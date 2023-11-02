@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "./Component/AddTask/addTask";
 import TaskList from "./Component/Tasklist/tasklist";
 
 function App() {
-  const [task, setTask] = useState([
-    { name: "task", isCompleted: true },
-    { name: "task1", isCompleted: false },
-    { name: "task2", isCompleted: true },
-  ]);
+  const storedTask = JSON.parse(localStorage.getItem("task"));
+  const [task, setTask] = useState(
+    storedTask
+    //   [
+    //   { name: "task", isCompleted: true },
+    //   { name: "tasks", isCompleted: false },
+    //   { name: "taskk", isCompleted: true },
+    // ]
+  );
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(task));
+  }, [task]);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-300 ">

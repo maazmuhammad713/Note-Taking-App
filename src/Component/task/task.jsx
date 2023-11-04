@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const Task = (props) => {
   const [isCompleted, setIsCompleted] = useState(props.isCompleted);
-  const [name, setName] = useState(props.name);
 
   const isCompletedHandler = () => {
     console.log("haha");
@@ -10,7 +9,7 @@ const Task = (props) => {
   };
   const deleteHandler = () => {
     console.log("deleted");
-    setName("");
+    props.deleteTask(props.name);
   };
 
   // const [counter, setCounter] = useState(0);
@@ -36,7 +35,7 @@ const Task = (props) => {
           isCompleted ? "blue" : "red"
         }-500 text-2xl`}
       >
-        {name}
+        {props.name}
         {/* {counter} */}
       </h1>
       <button
